@@ -18,7 +18,7 @@ class App extends Component {
 
   componentDidMount(){
 		if(this.state.logged_in){
-      fetch(base_url + 'user/auth/user', {
+      fetch(base_url + 'auth/user', {
 				method : 'GET',
 				headers : {
 					Authorization : `JWT ${localStorage.getItem('token')}`
@@ -65,6 +65,7 @@ class App extends Component {
   .then(response => response.json())
   .then(json => {
     localStorage.setItem('token', json.token);
+    console.log(json.user)
     this.setState({
       logged_in : true,
       username : json.user.username
