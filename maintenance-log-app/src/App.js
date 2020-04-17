@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
-import './App.css';
 import NavComponent from './Components/NavComponent';
 import UserInfo from './UserInfo'
 import Vehicles from './Vehicles'
@@ -18,7 +16,8 @@ class App extends Component {
       username : '',
       displayed_form : '',
       vehicles : [],
-      logs : []
+      logs : [],
+      userInfo: []
     }
   }
 
@@ -74,6 +73,24 @@ class App extends Component {
         console.log(error)
       })
 
+      fetch(base_url + 'users', {
+        crossDomain : true,
+        withCredentials : true,
+        async : true,
+        method : 'GET',
+        headers : {
+          Authorization :  `Token ${localStorage.getItem('token')}`,
+        }
+      })
+      .then(response => response.json())
+      .then(user => {
+        this.setState({
+          userInfo : user
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
   }
 
@@ -160,22 +177,27 @@ class App extends Component {
     .catch(error => {
       console.log(error)
     })
-  }
 
-  getAxiosVehicles() {
-    console.log('token', localStorage.getItem('token'))
-    let vehiclesUrl = `${base_url}vehicles`
-    axios({
-      method: 'GET',
-      url: vehiclesUrl,
-      headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+    fetch(base_url + 'users', {
+      crossDomain : true,
+      withCredentials : true,
+      async : true,
+      method : 'GET',
+      headers : {
+        Authorization :  `Token ${localStorage.getItem('token')}`,
+      }
     })
-    .then(vehicles =>
-      // this.setState({vehicles: vehicles.data})
-      console.log('getAxiosVehicles', vehicles.data)
-      )
+    .then(response => response.json())
+    .then(user => {
+      this.setState({
+        userInfo : user
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
-  
+ 
 
   render(){
     // console.log('base_url', base_url)
@@ -187,20 +209,36 @@ class App extends Component {
 
     const { logged_in, username, displayed_form } = this.state;
 		return (
-			<div>
-				<NavComponent
-          logged_in = {logged_in}
-          handleLogin = {this.handleLogin}
-          handleLoginChange = {this.handleLoginChange}
-          handleLogout = {this.handleLogout}
-          username = {username}
-          displayed_form = {displayed_form}
-          display_form = {this.display_form}
-				/>
-				<h3>{this.state.logged_in ? `Hello ${this.state.username}` : 'Please log in'}</h3>
-        <UserInfo />
-        <Vehicles props={this.state}/>
-        <Logs props={this.state}/>
+			<div className="App">
+          <header className='topnav'>
+          <h1>Maintenance App</h1>
+          <div className="login-container">
+            <NavComponent
+              logged_in = {logged_in}
+              handleLogin = {this.handleLogin}
+              handleLoginChange = {this.handleLoginChange}
+              handleLogout = {this.handleLogout}
+              username = {username}
+              displayed_form = {displayed_form}
+              display_form = {this.display_form}
+            />
+          </div>
+          <h3>{this.state.logged_in ? `Hello ${this.state.username}` : 'Please log in'}</h3>
+        </header>
+        
+        <div className="App-body">
+          <nav className="App-nav">App Nav</nav>
+          <main className="App-content">App Content
+            <UserInfo props={this.state.userInfo}/>
+            <Vehicles props={this.state}/>
+            <Logs props={this.state}/>
+          </main>
+          <aside className="App-sidebar">Aside
+            <h4>Vehicle Common Parts List</h4>
+          </aside>
+        </div>
+        
+        <footer>© Antelman Enterprises, LLC</footer>
 			</div>
 		)
   }

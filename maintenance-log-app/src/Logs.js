@@ -10,7 +10,7 @@ class Logs extends Component {
   }
 
   render() {
-    console.log('Log Component Render', this.props.props.logs[0])
+    // console.log('Log Component Render', this.props.props.logs[0])
     let logDetails = this.props.props.logs.map((log, index) => {
         return (
             <div key={index}>
@@ -22,9 +22,7 @@ class Logs extends Component {
                 <li>{`cost: ${log.cost}`}</li>
                 <li>{`description: ${log.description}`}</li>
             </div>
-
         )
-            
     })
 
 

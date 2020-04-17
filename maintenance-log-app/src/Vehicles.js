@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import Logs from './Logs'
 
-
-// const base_url = window.SERVER_ADDRESS
-const base_url = 'http://localhost:8000/api/'
-
 class Vehicles extends Component {
   constructor(props){
     super()
@@ -25,7 +21,6 @@ class Vehicles extends Component {
         )
             
     })
-
 
     return (
         <div>
