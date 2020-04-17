@@ -98,7 +98,8 @@ header {
   color: #fff;
   padding-left: 10px;
   text-decoration-line: none;
-  background-color: #7C7C7C
+  background-color: #7C7C7C;
+  background: url('/assets/images/tire-tracks.png') no-repeat center/100% #7C7C7C;
 }
 
 .topnav .login-container{

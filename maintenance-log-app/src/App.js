@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import NavComponent from './Components/NavComponent';
 import UserInfo from './UserInfo'
 import Vehicles from './Vehicles'
+import Home from './Home'
 import Logs from './Logs'
 import axios from 'axios'
+import {Route, Link, Redirect, Switch, withRouter} from "react-router-dom"
 
 // const base_url = window.SERVER_ADDRESS
 const base_url = 'http://localhost:8000/api/'
@@ -227,11 +229,49 @@ class App extends Component {
         </header>
         
         <div className="App-body">
-          <nav className="App-nav">App Nav</nav>
+          <nav className="App-nav">App Nav
+            <ul>
+              <li><Link to="/home">Home</Link></li>
+              <li><Link to="/user">User Details</Link></li>
+              <li><Link to="/vehicles">Vehicles</Link></li>
+              <li><Link to="/logs">All Logs</Link></li>
+            </ul>
+          </nav>
           <main className="App-content">App Content
-            <UserInfo props={this.state.userInfo}/>
-            <Vehicles props={this.state}/>
-            <Logs props={this.state}/>
+            <Switch>
+              <Route
+                path='/home'
+                component={Home}
+              />
+              <Route
+                path='/user'
+                render={routerProps =>
+                <UserInfo
+                  {...routerProps}
+                  props={this.state.userInfo}
+                />}
+              />
+              <Route
+                path='/vehicles'
+                render={routerProps =>
+                <Vehicles
+                  {...routerProps}
+                  props={this.state}
+                />}
+              />
+              <Route
+                path='/logs'
+                render={routerProps =>
+                <Logs
+                  {...routerProps}
+                  props={this.state}
+                />}
+              />
+              <Route path="/*" render={() => <Redirect to="/home" />} />
+            </Switch>
+            {/* <UserInfo props={this.state.userInfo}/> */}
+            {/* <Vehicles props={this.state}/> */}
+            {/* <Logs props={this.state}/> */}
           </main>
           <aside className="App-sidebar">Aside
             <h4>Vehicle Common Parts List</h4>
@@ -245,4 +285,4 @@ class App extends Component {
   
 }
 
-export default App;
+export default withRouter(App);
