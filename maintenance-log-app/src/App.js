@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import NavComponent from './Components/NavComponent';
 import UserInfo from './UserInfo'
 import Vehicles from './Vehicles'
+import VehicleUpdate from './VehicleUpdate'
+import VehicleAdd from './VehicleAdd'
+import VehicleConfirmDelete from './VehicleConfirmDelete'
 import Home from './Home'
 import Logs from './Logs'
 import axios from 'axios'
@@ -19,7 +22,12 @@ class App extends Component {
       displayed_form : '',
       vehicles : [],
       logs : [],
-      userInfo: []
+      userInfo: [],
+      model_year: '',
+      make: '',
+      model: '',
+      trim: '',
+      color: ''
     }
   }
 
@@ -123,6 +131,7 @@ class App extends Component {
       method : 'POST',
       headers : {
         'Content-Type' : 'application/json',
+        Authorization : `Token ${localStorage.getItem('token')}`
       },
       body : JSON.stringify(data)
     })
@@ -132,7 +141,8 @@ class App extends Component {
       // console.log(json.user)
       this.setState({
         logged_in : true,
-        username : json.user.username
+        username : json.user.username,
+        userInfo : json.user.id
       })
     })
     .catch(error => {
@@ -200,6 +210,134 @@ class App extends Component {
     })
   }
  
+  handleChange = (event) => {
+    console.log('handleChange event.target.name ', event.target.name)
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  } 
+
+  handleVehicleUpdateSubmit = event => {
+    event.preventDefault()
+    console.log('handleVehicleUpdateSubmit')
+    console.log('event.target.id ', event.target.id)
+
+    //define data object that will be used for the put statement
+    let data = {}
+    //conditional logic that stats if the value isn't empty, set the data 
+    //object key and assign it with the update value
+    if (this.state.model_year) {data.model_year = this.state.model_year}
+    if (this.state.make) {data.make = this.state.make}
+    if (this.state.model) {data.model = this.state.model}
+    if (this.state.trim) {data.trim = this.state.trim}
+    if (this.state.color) {data.color = this.state.color}
+    
+    console.log('data ', data)
+    fetch(`${base_url}vehicles/${event.target.id}/`, {
+      crossDomain : true,
+      withCredentials : true,
+      async : true,
+      method : 'PATCH',
+      headers : {
+        'Content-Type' : 'application/json',
+        Authorization :  `Token ${localStorage.getItem('token')}`
+      },
+      body : JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log('updatedVehicle ', response)
+      this.setState(prevState => ({
+        model_year: '',
+        make: '',
+        model: '',
+        trim: '',
+        color: ''
+      }))
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
+    fetch(base_url + 'vehicles', {
+      crossDomain : true,
+      withCredentials : true,
+      async : true,
+      method : 'GET',
+      headers : {
+        Authorization :  `Token ${localStorage.getItem('token')}`,
+      }
+    })
+    .then(response => response.json())
+    .then(vehicles => {
+      this.setState({
+        vehicles : vehicles
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    this.props.history.push(`/vehicles`)
+  }
+
+  handleVehicleAddSubmit = event => {
+    event.preventDefault()
+    console.log('handleVehicleAddSubmit ', event)
+    let data = {
+      model_year: this.state.model_year,
+      make: this.state.make,
+      model: this.state.model,
+      year: this.state.year,
+      color: this.state.color
+    }
+    fetch(base_url + 'vehicles', {
+      crossDomain : true,
+      withCredentials : true,
+      async : true,
+      method : 'POST',
+      headers : {
+        'Content-Type' : 'application/json',
+        Authorization :  `Token ${localStorage.getItem('token')}`,
+      },
+      body : JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log('newVehicle ', response)
+      this.setState(prevState => ({
+        model_year: '',
+        make: '',
+        model: '',
+        trim: '',
+        color: ''
+      }))
+    })
+    fetch(base_url + 'vehicles', {
+      crossDomain : true,
+      withCredentials : true,
+      async : true,
+      method : 'GET',
+      headers : {
+        Authorization :  `Token ${localStorage.getItem('token')}`,
+      }
+    })
+    .then(response => response.json())
+    .then(vehicles => {
+      this.setState({
+        vehicles : vehicles
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    this.props.history.push(`/vehicles`)
+  }
+
+  handleDeleteVehicle = event => {
+    event.preventDefault()
+    console.log('handleDeleteVehicle ', event)
+  }
+
 
   render(){
     // console.log('base_url', base_url)
@@ -225,11 +363,11 @@ class App extends Component {
               display_form = {this.display_form}
             />
           </div>
-          <h3>{this.state.logged_in ? `Hello ${this.state.username}` : 'Please log in'}</h3>
+          <h3>{this.state.logged_in ? `Welcome ${this.state.username}` : null}</h3>
         </header>
         
         <div className="App-body">
-          <nav className="App-nav">App Nav
+          <nav className="App-nav">
             <ul>
               <li><Link to="/home">Home</Link></li>
               <li><Link to="/user">User Details</Link></li>
@@ -237,7 +375,7 @@ class App extends Component {
               <li><Link to="/logs">All Logs</Link></li>
             </ul>
           </nav>
-          <main className="App-content">App Content
+          <main className="App-content">
             <Switch>
               <Route
                 path='/home'
@@ -246,26 +384,65 @@ class App extends Component {
               <Route
                 path='/user'
                 render={routerProps =>
-                <UserInfo
-                  {...routerProps}
-                  props={this.state.userInfo}
-                />}
+                  <UserInfo
+                    {...routerProps}
+                    props={this.state.userInfo}
+                  />
+                }
               />
               <Route
                 path='/vehicles'
                 render={routerProps =>
-                <Vehicles
-                  {...routerProps}
-                  props={this.state}
-                />}
+                  <Vehicles
+                    {...routerProps}
+                    props={this.state}
+                  />
+                }
+              />
+              <Route
+                path='/vehicleupdate/:id'
+                render={routerProps =>
+                  <VehicleUpdate
+                    {...this.props}
+                    {...routerProps}
+                    vehicle={this.state.vehicles}
+                    handleChange={this.handleChange}
+                    handleVehicleUpdateSubmit={this.handleVehicleUpdateSubmit}
+                  />
+                }
+              />
+              <Route
+                path='/vehicleadd'
+                render={routerProps =>
+                  <VehicleAdd
+                    {...this.props}
+                    {...routerProps}
+                    vehicle={this.state.vehicles}
+                    handleChange={this.handleChange}
+                    handleVehicleAddSubmit={this.handleVehicleAddSubmit}
+                  />
+                }
+              />
+              <Route
+                path='/vehicledelete/:id'
+                render={routerProps =>
+                  <VehicleConfirmDelete
+                    {...this.props}
+                    {...routerProps}
+                    vehicle={this.state.vehicles}
+                    handleChange={this.handleChange}
+                    handleVehicleDeleteSubmit={this.handleVehicleDeleteSubmit}
+                  />
+                }
               />
               <Route
                 path='/logs'
                 render={routerProps =>
-                <Logs
-                  {...routerProps}
-                  props={this.state}
-                />}
+                  <Logs
+                    {...routerProps}
+                    props={this.state}
+                  />
+                }
               />
               <Route path="/*" render={() => <Redirect to="/home" />} />
             </Switch>

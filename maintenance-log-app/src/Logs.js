@@ -21,6 +21,7 @@ class Logs extends Component {
                 <li>{`repair name: ${log.repair_name}`}</li>
                 <li>{`cost: ${log.cost}`}</li>
                 <li>{`description: ${log.description}`}</li>
+                <li>==================================</li>
             </div>
         )
     })
@@ -28,7 +29,6 @@ class Logs extends Component {
 
     return (
         <div>
-            -- Logs Component --
             {logDetails}
         </div>
     )
