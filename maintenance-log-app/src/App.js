@@ -36,7 +36,7 @@ class App extends Component {
 
   componentDidMount(){
 		if(this.state.logged_in){
-      fetch(base_url + 'auth/user/', {
+      fetch(base_url + 'auth/user', {
         method : 'GET',
         headers : {
           Authorization : `Token ${localStorage.getItem('token')}`
@@ -160,7 +160,7 @@ class App extends Component {
       async : true,
       method : 'GET',
       headers : {
-        Authorization :  `Token ${localStorage.getItem('token')}`,
+        Authorization : `Token ${localStorage.getItem('token')}`,
       }
     })
     .then(response => response.json())
@@ -179,7 +179,7 @@ class App extends Component {
       async : true,
       method : 'GET',
       headers : {
-        Authorization :  `Token ${localStorage.getItem('token')}`,
+        Authorization : `Token ${localStorage.getItem('token')}`,
       }
     })
     .then(response => response.json())
@@ -198,7 +198,7 @@ class App extends Component {
       async : true,
       method : 'GET',
       headers : {
-        Authorization :  `Token ${localStorage.getItem('token')}`,
+        Authorization : `Token ${localStorage.getItem('token')}`,
       }
     })
     .then(response => response.json())

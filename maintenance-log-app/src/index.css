@@ -203,7 +203,7 @@ a:hover {
   
   .App-nav, .App-sidebar {
     /* 12em is the width of the columns */
-    flex: 0 0 15em;
+    flex: 0 0 12em;
     /* border: 1px solid red; */
     /* text-align: center; */
   }

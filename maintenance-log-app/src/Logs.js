@@ -24,10 +24,10 @@ class Logs extends Component {
               <li>{`description: ${log.description}`}</li>
               <li>{`vehicle: ${log.vehicle}`}</li>
               <h6>{`entry_date: ${log.entry_date}`}</h6>
-              <Link to={`/logupdate/${log && log.id}`}><button
-                id={log && log.id}>Update</button></Link>
-              <Link to={`/vehicledelete/${log && log.id}`}><button 
-                id={log && log.id}>Remove</button>
+              <Link to={`/logupdate/${log.id}`}><button
+                id={log.id}>Update</button></Link>
+              <Link to={`/vehicledelete/${log.id}`}><button 
+                id={log.id}>Remove</button>
               </Link>
               <li>==================================</li>
           </div>
@@ -39,18 +39,18 @@ class Logs extends Component {
       logDetails = this.props.match.params && this.props.props.logs.map((log, index) => {
         return (
           <div key={index}>
-              <li>{`date of service: ${log && log.date}`}</li>
-              <li>{`shop: ${log && log.shop}`}</li>
-              <li>{`receipts: ${log && log.receipts}`}</li>
-              <li>{`repair name: ${log && log.repair_name}`}</li>
-              <li>{`cost: ${log && log.cost}`}</li>
-              <li>{`description: ${log && log.description}`}</li>
-              <li>{`vehicle: ${log && log.vehicle}`}</li>
-              <h6>{`entry_date: ${log && log.entry_date}`}</h6>
-              <Link to={`/logupdate/${log && log && log.id}`}><button
-                id={log && log.id}>Update</button></Link>
-              <Link to={`/logdelete/${log && log.id}`}><button 
-                id={log && log.id}>Remove</button>
+              <li>{`date of service: ${log.date}`}</li>
+              <li>{`shop: ${log.shop}`}</li>
+              <li>{`receipts: ${log.receipts}`}</li>
+              <li>{`repair name: ${log.repair_name}`}</li>
+              <li>{`cost: ${log.cost}`}</li>
+              <li>{`description: ${log.description}`}</li>
+              <li>{`vehicle: ${log.vehicle}`}</li>
+              <h6>{`entry_date: ${log.entry_date}`}</h6>
+              <Link to={`/logupdate/${log.id}`}><button
+                id={log.id}>Update</button></Link>
+              <Link to={`/logdelete/${log.id}`}><button 
+                id={log.id}>Remove</button>
               </Link>
               <li>==================================</li>
           </div>
