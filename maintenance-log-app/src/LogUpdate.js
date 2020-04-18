@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TextField from "@material-ui/core/TextField";
+import CameraApp from './CameraApp'
 
 class LogUpdate extends Component {
 
@@ -43,6 +44,7 @@ class LogUpdate extends Component {
                     <TextField fullWidth={true} type="text" name="vehicle" placeholder="update vehicle" /></li>           
                 <TextField type="submit"  />
             </form>
+            <CameraApp />
         </div>
     )
     }

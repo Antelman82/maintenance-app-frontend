@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
+import CameraApp from './CameraApp'
 
 
 class Logs extends Component {
@@ -62,11 +63,13 @@ class Logs extends Component {
 
     return (
         <div>
-            {logDetails}
-            <Link to="/logadd"><button>Create New Log</button></Link>
+          <CameraApp/>
+          {logDetails}
+           <Link to="/logadd"><button>Create New Log</button></Link> 
         </div>
     )
   }
 }
+
 
 export default Logs;
