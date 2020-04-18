@@ -406,7 +406,7 @@ class App extends Component {
               <li><Link to="/home">Home</Link></li>
               <li><Link to="/user">User Details</Link></li>
               <li><Link to="/vehicles">Vehicles</Link></li>
-              <li><Link to="/logs">All Logs</Link></li>
+              <li><Link to="/logs/all">All Logs</Link></li>
             </ul>
           </nav>
           <main className="App-content">
@@ -470,7 +470,7 @@ class App extends Component {
                 }
               />
               <Route
-                path='/logs'
+                path='/logs/:id'
                 render={routerProps =>
                   <Logs
                     {...routerProps}
@@ -480,12 +480,17 @@ class App extends Component {
               />
               <Route path="/*" render={() => <Redirect to="/home" />} />
             </Switch>
-            {/* <UserInfo props={this.state.userInfo}/> */}
-            {/* <Vehicles props={this.state}/> */}
-            {/* <Logs props={this.state}/> */}
           </main>
-          <aside className="App-sidebar">Aside
-            <h4>Vehicle Common Parts List</h4>
+          <aside className="App-sidebar">
+            <h4>Vehicle Parts List</h4>
+            <h5>tire size front</h5>
+            <h5>Wiper sizes</h5>
+            <h6>&nbsp;&nbsp; driver front:</h6>
+            <h6>&nbsp;&nbsp; passenger front:</h6>
+            <h6>&nbsp;&nbsp; rear:</h6>
+            <h5>Bulbs:</h5>
+            <h5>Filters:</h5>
+            <h5>Battery:</h5>
           </aside>
         </div>
         

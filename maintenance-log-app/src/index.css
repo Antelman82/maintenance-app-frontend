@@ -30,8 +30,8 @@ code {
 .App-content {
   flex: 1;
   /* border: 1px solid red; */
-  max-height: 90vw;
-  overflow: scroll;
+  max-height: 90%;
+  overflow-y: scroll;
 }
 .padding-left {
   padding-left: 5px;
@@ -63,6 +63,8 @@ code {
   padding: 5px;
   max-height: 90vw;
   overflow: scroll;
+  background-color: #525252;
+  text-shadow: 1px 1px 0 #000;
 }
 
 .App-nav ul {
@@ -75,9 +77,16 @@ code {
   padding: 0vh 5vw;
   margin: 0;
 }
+.App-content {
+  padding: 10px;
+}
 
 li button {
   width: 100%;
+}
+
+button {
+  color: #7C7C7C;
 }
 
 li {
@@ -137,19 +146,77 @@ nav li {
   opacity: 0.7;
 } */
 
-@media (min-width: 768px) {
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: #fff;
+}
+a:visited {
+  color: #fff;
+}
+a:active {
+  color: #7C7C7C;
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration: underline;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+@media screen and (min-width: 768px) {
   .App-body {
     flex-direction: row;
     flex: 1;
     /* border: 1px solid red; */
   }
+
   .App-content {
     flex: 1;
     /* border: 1px solid red; */
   }
+  
   .App-nav, .App-sidebar {
     /* 12em is the width of the columns */
-    flex: 0 0 12em;
+    flex: 0 0 15em;
     /* border: 1px solid red; */
+    /* text-align: center; */
+  }
+
+  /* .App-nav {
+    padding-left: 0;
+    text-align: center;
+  } */
+
+  .App-nav a {
+    margin: auto;
+    /* text-align: center; */
+    width: 50%;
+    padding: 0;
   }
 }

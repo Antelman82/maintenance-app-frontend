@@ -13,10 +13,11 @@ class Vehicles extends Component {
         // console.log(vehicle)
         return (
             <div key={index}>
-                <li>{`${vehicle && vehicle.model_year} ${vehicle && vehicle.make} ${vehicle && vehicle.model}`}</li>
+                <Link to={`/logs/${vehicle && vehicle.id}`}><li className='tooltip'>{`${vehicle && vehicle.model_year} ${vehicle && vehicle.make} ${vehicle && vehicle.model}`}
+                <span class="tooltiptext tooltip-right">View Logs</span></li></Link>
                 <li>{`trim: ${vehicle && vehicle.trim}`}</li>
                 <li>{`color: ${vehicle && vehicle.color}`}</li>
-                <Link to={`vehicleupdate/${vehicle && vehicle.id}`}><button
+                <Link to={`/vehicleupdate/${vehicle && vehicle.id}`}><button
                     id={vehicle && vehicle.id}>Update</button></Link>
                 <Link to={`/vehicledelete/${vehicle && vehicle.id}`}><button 
                     id={vehicle && vehicle.id}>Remove</button>
