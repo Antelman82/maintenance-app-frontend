@@ -7,6 +7,9 @@ import VehicleAdd from './VehicleAdd'
 import VehicleConfirmDelete from './VehicleConfirmDelete'
 import Home from './Home'
 import Logs from './Logs'
+import LogAdd from './LogAdd'
+import LogUpdate from './LogUpdate'
+import LogConfirmDelete from './LogConfirmDelete'
 import axios from 'axios'
 import {Route, Link, Redirect, Switch, withRouter} from "react-router-dom"
 
@@ -123,7 +126,7 @@ class App extends Component {
 
   handleLogin = (e, data) => {
     e.preventDefault();
-    // console.log(data)
+    console.log(data)
     fetch(base_url + 'auth/login', {
       crossDomain : true,
       withCredentials : true,
@@ -138,7 +141,7 @@ class App extends Component {
     .then(response => response.json())
     .then(json => {
       localStorage.setItem('token', json.token);
-      // console.log(json.user)
+      console.log(json.user)
       this.setState({
         logged_in : true,
         username : json.user.username,
@@ -218,159 +221,169 @@ class App extends Component {
   } 
 
   handleVehicleUpdateSubmit = event => {
-    event.preventDefault()
-    console.log('handleVehicleUpdateSubmit')
-    console.log('event.target.id ', event.target.id)
+    if(this.state.logged_in){
+      event.preventDefault()
+      console.log('handleVehicleUpdateSubmit')
+      console.log('event.target.id ', event.target.id)
 
-    //define data object that will be used for the put statement
-    let data = {}
-    //conditional logic that stats if the value isn't empty, set the data 
-    //object key and assign it with the update value
-    if (this.state.model_year) {data.model_year = this.state.model_year}
-    if (this.state.make) {data.make = this.state.make}
-    if (this.state.model) {data.model = this.state.model}
-    if (this.state.trim) {data.trim = this.state.trim}
-    if (this.state.color) {data.color = this.state.color}
-    
-    console.log('data ', data)
-    fetch(`${base_url}vehicles/${event.target.id}/`, {
-      crossDomain : true,
-      withCredentials : true,
-      async : true,
-      method : 'PATCH',
-      headers : {
-        'Content-Type' : 'application/json',
-        Authorization :  `Token ${localStorage.getItem('token')}`
-      },
-      body : JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(response => {
-      console.log('updatedVehicle ', response)
-      this.setState(prevState => ({
-        model_year: '',
-        make: '',
-        model: '',
-        trim: '',
-        color: ''
-      }))
-    })
-    .catch(error => {
-      console.log(error)
-    })
-
-    fetch(base_url + 'vehicles', {
-      crossDomain : true,
-      withCredentials : true,
-      async : true,
-      method : 'GET',
-      headers : {
-        Authorization :  `Token ${localStorage.getItem('token')}`,
-      }
-    })
-    .then(response => response.json())
-    .then(vehicles => {
-      this.setState({
-        vehicles : vehicles
+      //define data object that will be used for the put statement
+      let data = {}
+      //conditional logic that stats if the value isn't empty, set the data 
+      //object key and assign it with the update value
+      if (this.state.model_year) {data.model_year = this.state.model_year}
+      if (this.state.make) {data.make = this.state.make}
+      if (this.state.model) {data.model = this.state.model}
+      if (this.state.trim) {data.trim = this.state.trim}
+      if (this.state.color) {data.color = this.state.color}
+      
+      console.log('data ', data)
+      fetch(`${base_url}vehicles/${event.target.id}/`, {
+        crossDomain : true,
+        withCredentials : true,
+        async : true,
+        method : 'PATCH',
+        headers : {
+          'Content-Type' : 'application/json',
+          Authorization :  `Token ${localStorage.getItem('token')}`
+        },
+        body : JSON.stringify(data)
       })
-    })
-    .catch(error => {
-      console.log(error)
-    })
-    this.props.history.push(`/vehicles`)
+      .then(response => response.json())
+      .then(response => {
+        console.log('updatedVehicle ', response)
+        this.setState(prevState => ({
+          model_year: '',
+          make: '',
+          model: '',
+          trim: '',
+          color: ''
+        }))
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+      fetch(base_url + 'vehicles', {
+        crossDomain : true,
+        withCredentials : true,
+        async : true,
+        method : 'GET',
+        headers : {
+          Authorization :  `Token ${localStorage.getItem('token')}`,
+        }
+      })
+      .then(response => response.json())
+      .then(vehicles => {
+        this.setState({
+          vehicles : vehicles
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+      this.props.history.push(`/vehicles`)
+    }
   }
+
+    
 
   handleVehicleAddSubmit = event => {
-    event.preventDefault()
-    console.log('handleVehicleAddSubmit ', event)
-    let data = {
-      model_year: this.state.model_year,
-      make: this.state.make,
-      model: this.state.model,
-      year: this.state.year,
-      color: this.state.color
-    }
-    fetch(base_url + 'vehicles', {
-      crossDomain : true,
-      withCredentials : true,
-      async : true,
-      method : 'POST',
-      headers : {
-        'Content-Type' : 'application/json',
-        Authorization :  `Token ${localStorage.getItem('token')}`,
-      },
-      body : JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(response => {
-      console.log('newVehicle ', response)
-      this.setState(prevState => ({
-        model_year: '',
-        make: '',
-        model: '',
-        trim: '',
-        color: ''
-      }))
-    })
-    // get vehicles again after update
-    fetch(base_url + 'vehicles', {
-      crossDomain : true,
-      withCredentials : true,
-      async : true,
-      method : 'GET',
-      headers : {
-        Authorization :  `Token ${localStorage.getItem('token')}`,
+    if(this.state.logged_in){
+      event.preventDefault()
+      console.log('handleVehicleAddSubmit ', event)
+      let data = {
+        model_year: this.state.model_year,
+        make: this.state.make,
+        model: this.state.model,
+        year: this.state.year,
+        color: this.state.color
       }
-    })
-    .then(response => response.json())
-    .then(vehicles => {
-      this.setState({
-        vehicles : vehicles
+      fetch(base_url + 'vehicles', {
+        crossDomain : true,
+        withCredentials : true,
+        async : true,
+        method : 'POST',
+        headers : {
+          'Content-Type' : 'application/json',
+          Authorization :  `Token ${localStorage.getItem('token')}`,
+        },
+        body : JSON.stringify(data)
       })
-    })
-    .catch(error => {
-      console.log(error)
-    })
-    this.props.history.push(`/vehicles`)
+      .then(response => response.json())
+      .then(response => {
+        console.log('newVehicle ', response)
+        this.setState(prevState => ({
+          model_year: '',
+          make: '',
+          model: '',
+          trim: '',
+          color: ''
+        }))
+      })
+      // get vehicles again after update
+      fetch(base_url + 'vehicles', {
+        crossDomain : true,
+        withCredentials : true,
+        async : true,
+        method : 'GET',
+        headers : {
+          Authorization :  `Token ${localStorage.getItem('token')}`,
+        }
+      })
+      .then(response => response.json())
+      .then(vehicles => {
+        this.setState({
+          vehicles : vehicles
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+      this.props.history.push(`/vehicles`)
+    }
   }
+    
 
   handleDeleteVehicle = event => {
-    event.preventDefault()
-    console.log('handleDeleteVehicle ', event)
-    fetch(`${base_url}vehicles/${event.target.id}/`, {
-      crossDomain : true,
-      withCredentials : true,
-      async : true,
-      method : 'DELETE',
-      headers : {
-        'Content-Type' : 'application/json',
-        Authorization :  `Token ${localStorage.getItem('token')}`,
-      }
-    })
-    .catch(error => {
-      console.log(error)
-    })
-    // get vehicles again after update
-    fetch(base_url + 'vehicles', {
-      crossDomain : true,
-      withCredentials : true,
-      async : true,
-      method : 'GET',
-      headers : {
-        Authorization : `Token ${localStorage.getItem('token')}`,
-      }
-    })
-    .then(response => response.json())
-    .then(vehicles => {
-      this.setState({
-        vehicles : vehicles
+    if(this.state.logged_in){
+      event.preventDefault()
+      console.log('handleDeleteVehicle ', event)
+      fetch(`${base_url}vehicles/${event.target.id}/`, {
+        crossDomain : true,
+        withCredentials : true,
+        async : true,
+        method : 'DELETE',
+        headers : {
+          'Content-Type' : 'application/json',
+          Authorization :  `Token ${localStorage.getItem('token')}`,
+        }
       })
-    })
-    .catch(error => {
-      console.log(error)
-    })
-    this.props.history.push(`/vehicles`)
+      .catch(error => {
+        console.log(error)
+      })
+      // get vehicles again after update
+      fetch(base_url + 'vehicles', {
+        crossDomain : true,
+        withCredentials : true,
+        async : true,
+        method : 'GET',
+        headers : {
+          Authorization : `Token ${localStorage.getItem('token')}`,
+        }
+      })
+      .then(response => response.json())
+      .then(vehicles => {
+        this.setState({
+          vehicles : vehicles
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+      this.props.history.push(`/vehicles`)
+    }
   }
+    
 
 
   render(){
@@ -475,6 +488,42 @@ class App extends Component {
                   <Logs
                     {...routerProps}
                     props={this.state}
+                  />
+                }
+              />
+              <Route
+                path='/logadd'
+                render={routerProps =>
+                  <LogAdd
+                    {...this.props}
+                    {...routerProps}
+                    log={this.state.logs}
+                    handleChange={this.handleChange}
+                    handleLogAddSubmit={this.handleLogAddSubmit}
+                  />
+                }
+              />
+              <Route
+                path='/logupdate/:id'
+                render={routerProps =>
+                  <LogUpdate
+                    {...this.props}
+                    {...routerProps}
+                    log={this.state.logs}
+                    handleChange={this.handleChange}
+                    handleLogUpdateSubmit={this.handleLogUpdateSubmit}
+                  />
+                }
+              />
+              <Route
+                path='/logdelete/:id'
+                render={routerProps =>
+                  <LogConfirmDelete
+                    {...this.props}
+                    {...routerProps}
+                    log={this.state.logs}
+                    handleChange={this.handleChange}
+                    handleDeleteLog={this.handleDeleteLog}
                   />
                 }
               />

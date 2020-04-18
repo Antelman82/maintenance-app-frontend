@@ -16,7 +16,7 @@ class VehicleConfirmDelete extends Component {
             <div>{`color: ${vehicleInfo && vehicleInfo.color}`}</div>          
           </div>
           <p><button onClick={this.props.handleDeleteVehicle} id={vehicleInfo && vehicleInfo.id}>Confirm Delete</button></p>
-          <Link to={'/vehicles'}><p><button>Cancel</button></p></Link>
+          <Link to={`/vehicles`}><p><button>Cancel</button></p></Link>
 
         </div>
     )
