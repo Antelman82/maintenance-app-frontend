@@ -312,6 +312,7 @@ class App extends Component {
         color: ''
       }))
     })
+    // get vehicles again after update
     fetch(base_url + 'vehicles', {
       crossDomain : true,
       withCredentials : true,
@@ -336,6 +337,39 @@ class App extends Component {
   handleDeleteVehicle = event => {
     event.preventDefault()
     console.log('handleDeleteVehicle ', event)
+    fetch(`${base_url}vehicles/${event.target.id}/`, {
+      crossDomain : true,
+      withCredentials : true,
+      async : true,
+      method : 'DELETE',
+      headers : {
+        'Content-Type' : 'application/json',
+        Authorization :  `Token ${localStorage.getItem('token')}`,
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    // get vehicles again after update
+    fetch(base_url + 'vehicles', {
+      crossDomain : true,
+      withCredentials : true,
+      async : true,
+      method : 'GET',
+      headers : {
+        Authorization : `Token ${localStorage.getItem('token')}`,
+      }
+    })
+    .then(response => response.json())
+    .then(vehicles => {
+      this.setState({
+        vehicles : vehicles
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    this.props.history.push(`/vehicles`)
   }
 
 
@@ -431,7 +465,7 @@ class App extends Component {
                     {...routerProps}
                     vehicle={this.state.vehicles}
                     handleChange={this.handleChange}
-                    handleVehicleDeleteSubmit={this.handleVehicleDeleteSubmit}
+                    handleDeleteVehicle={this.handleDeleteVehicle}
                   />
                 }
               />
