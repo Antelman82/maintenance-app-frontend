@@ -21,88 +21,80 @@ The main objective of this project was to create an application that a team coul
 <p align="center">
 <img src='Project 3 Wireframe - Show Management App - page3.jpg' width=600 align='center'>
 </p>
-
+ 
+- Database Template
 <p align="center">
-<img src='Project 3 Wireframe - Show Management App - page4.jpg' width=600 align='center'>
+<img src='public/assets/images/Database template.jpg' width=600 align='center'>
 </p>
+
 ---
+
 Assets
 
 
 ---
 
 ## User Stories
-1. [ ] As a User I want to log in to my own account
-2. [ ] As a User I want to create a vehicle
-3. [ ] As a User I want to have a maintenance log for each vehicle
-4. [ ] As a User I want to see maintenance for all vehicles at once
+1. [x] As a User I want to log in to my own account
+2. [x] As a User I want to create a vehicle
+3. [x] As a User I want to have a maintenance log for each vehicle
+4. [x] As a User I want to see maintenance for all vehicles at once
 5. [ ] As a User I want to be able to filter the log by multiple different values
 6. [ ] As a user, I want the app to notify me when the manufacturers recommended services are needed. 
 7. [ ] As a user, I want to pick my vehicle and have it provide me with wiper blade sizes, tire sizes, and some other types of typical part replacement things. 
+8. [ ]As a User, I want to be able to take a picture of my receipts and maintenance records to store for each log entry. In some cases, I would like to add multiple pictures, either from a local storage, or from my smart device camera.
 
 
-As a User, I want to be able to take a picture of my receipts and maintenance records to store for each log entry. In some cases, I would like to add multiple pictures, either from a local storage, or from my smart device camera.
+## Feature Ideas:
+1. User Login
+    - Name
+    - Email
+    - Phone number (for text alerts)
+2. Repair Log
+    - Attach date, shop, receipts, etc.
+3. Maintenance Log
+    - Item
+    - frequency
+4. Travel Log
+    - Trip event, distance, start/end points, gas pumped/used, etc.
+5. Phone app camera pictures to add to different logs
+Possible api for vehicle info like tiresize, wiper sizes, etc.
 
-
-## Bronze Level:
-- MVP
-    - Basic Navigation
-        - Show Types
-        - Customers
-        - Users
-        - Equipment
-    - Able to add users, and shows
-    - Able to update users and shows
-    - Able to delete users and shows
-
-## Silver Level:
-    - User login
-    - click on show more info to see specifics of a show
-    - Connect users with shows
-    - connect equpipment with shows
-    - add a map for the location of the venue
-
-## Gold Level:
-    - user password maintenance
-    - filter user's shows by year
-    - We would expand on the show component, and we link to that using the AsideList links. 
-        this would allow adding equipment and products to each.
-    - also on the show page we could add and remove the products, equipment, users, roles, and also update the status, as well as date, and even venue.
+possible API connections:
+https://www.carmd.com/api/vehicle-maintenance-carmd-api/
+https://www.dataonesoftware.com/solutions/service-maintenance
 
 ---
 
 ## Necessary Deliverables
-design and build an app with two major components:
-1. An API of your own design (built using Node, Express, and Mongoose) that serves JSON.
-1. A front-end React application that updates the UI and makes requests to the API.
+
+Your project must:
+https://git.generalassemb.ly/jdr-0127/project-4
+- Be a complete product.
+- Implement thoughtful user stories
+- Be deployed online
+- Use something we didn't teach in class
+
+Project Idea and Initial Planning
+By the end of Day 1 of Project Week, you need to submit:
+
+Your project idea (a brief 2-3 sentence description of your app)
+A list of your models and their properties
 
 ## Technical Requirements
-### Back-End Requirements:
-- A GitHub repo with your backend app
-- Your back-end must be a Node, Express, and Mongoose API with at least 2 non-user models. No associations are required.
-- Must have Create, Read, Update, and Destroy functionality built throughout the app (i.e. You don't need full CRUD on every model, just full CRUD throughout your models where it makes sense).
+The repository/repositories for your final project should include:
 
-### Front-End Requirements:
-- A GitHub repo with your frontend app
-- Your front-end must use React and leverage the backend API in the above requirements.
-- You must use React Router to handle multiple views.
-- You must communicate with the back-end API RESTfully to Create, Read, Update, and Destroy resources (using axios).
-- Your frontend must be responsive and work on mobile phones, tablets, and desktops
-
-## Collaboration
-- A GitHub repo with your frontend app
-- Your front-end must use React and leverage the backend API in the above requirements.
-- You must use React Router to handle multiple views.
-- You must communicate with the back-end API RESTfully to Create, Read, Update, and Destroy resources (using axios)
-- Your frontend must be responsive and work on mobile phones, tablets, and desktops
-You must have at least one test for each of your components
+A working project (built by you) that meets the technical requirements above.
+Frequent commits dating back to the very beginning of the project.
+A readme.md file in the root of your repo that follows good standards of documentation (i.e. explanations of the technologies used, the approach taken, features, installation instructions, unsolved problems, etc.)
+A planning/ directory in the root of your repo containing a diagram mapping out your project domain. You are welcome to include other planning documents (e.g., wireframes, user stories).
+A link to your hosted, working project in the URL section of your Github repo:
 
 ## Deployment
 - Your API must be deployed to Heroku and your front-end must be deployed to GitHub pages or Surge. Applications that are not deployed will be considered incomplete.
 ---
 
 ## Backend API
-### cutomers
 
 Since I used ViewSets from the default django framework, I was able to take advantage of the defaults already provided from that. There were only a couple instances where I had to create different defs for the serializers in order to return more specific values.
 
@@ -136,7 +128,17 @@ class UserViewSet(viewsets.ViewSet):
 ```
 https://www.django-rest-framework.org/api-guide/viewsets/
 
-
+```
+api/auth
+api/auth/register
+api/auth/login
+api/auth/user
+api/auth/logout
+admin
+api/users
+api/vehicles
+api/logs
+```
 
 ---
 
