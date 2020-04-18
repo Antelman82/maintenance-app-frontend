@@ -36,7 +36,7 @@ class App extends Component {
 
   componentDidMount(){
 		if(this.state.logged_in){
-      fetch(base_url + 'auth/user', {
+      fetch(base_url + 'auth/user/', {
         method : 'GET',
         headers : {
           Authorization : `Token ${localStorage.getItem('token')}`
@@ -134,7 +134,6 @@ class App extends Component {
       method : 'POST',
       headers : {
         'Content-Type' : 'application/json',
-        Authorization : `Token ${localStorage.getItem('token')}`
       },
       body : JSON.stringify(data)
     })
