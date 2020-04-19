@@ -17,7 +17,7 @@ import {Route, Link, Redirect, Switch, withRouter} from "react-router-dom"
 // import AWSUpload from './AWSUpload'
 
 // const base_url = window.SERVER_ADDRESS
-const base_url = 'http://localhost:8000/api/'
+const base_url = process.env.REACT_APP_BACKEND_APP_URL || 'http://localhost:8000/api/'
 class App extends Component {
   constructor(props){
     super(props)
