@@ -52,7 +52,10 @@ function downloadImageFileFomBlob (blob, imageNumber) {
     mouseEvent.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
     anchor.dispatchEvent(mouseEvent);
 }
-  
+
+// I think this is where I would send the file to the S3 bucket, 
+// and it would return the file url, and then I can save the url 
+// to the image_url value in the database. I'm so stinking close!
 function downloadImageFile (dataUri, imageNumber) {
     let blob = dataURItoBlob(dataUri);
     downloadImageFileFomBlob(blob, imageNumber);

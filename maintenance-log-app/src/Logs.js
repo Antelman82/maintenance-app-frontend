@@ -24,6 +24,7 @@ class Logs extends Component {
               <li>{`cost: ${log.cost}`}</li>
               <li>{`description: ${log.description}`}</li>
               <li>{`vehicle: ${log.vehicle}`}</li>
+              <li>{`image: ${log.image_url}`}</li>
               <h6>{`entry_date: ${log.entry_date}`}</h6>
               <Link to={`/logupdate/${log.id}`}><button
                 id={log.id}>Update</button></Link>
@@ -47,6 +48,7 @@ class Logs extends Component {
               <li>{`cost: ${log.cost}`}</li>
               <li>{`description: ${log.description}`}</li>
               <li>{`vehicle: ${log.vehicle}`}</li>
+              <li>{`image: ${log.image_url}`}</li>
               <h6>{`entry_date: ${log.entry_date}`}</h6>
               <Link to={`/logupdate/${log.id}`}><button
                 id={log.id}>Update</button></Link>

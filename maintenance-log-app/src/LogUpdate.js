@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import TextField from "@material-ui/core/TextField";
 import CameraApp from './CameraApp'
+import ImageAudioVideo from './ImageAudioVideo'
+
+
 
 class LogUpdate extends Component {
 
-  render(){
+    render(){
+
     // console.log('EquipmentDetails render this.props ',this.props)
     console.log(`this logs's id `, this.props.match.params.id)
     console.log('LogUpdate Component', this.props.log)
@@ -34,17 +38,21 @@ class LogUpdate extends Component {
                     {`trim: ${logInfo && logInfo.repair_name}`}
                     <TextField fullWidth={true} type="text" name="repair_name" placeholder="update repair name" /></li>
                 <li>
-                    {`color: ${logInfo && logInfo.cost}`}
+                    {`cost: ${logInfo && logInfo.cost}`}
                     <TextField fullWidth={true} type="text" name="cost" placeholder="update cost" /></li>
                 <li>
-                    {`color: ${logInfo && logInfo.description}`}
+                    {`description: ${logInfo && logInfo.description}`}
                     <TextField fullWidth={true} type="text" name="description" placeholder="update description" /></li>  
                 <li>
-                    {`color: ${logInfo && logInfo.vehicle}`}
-                    <TextField fullWidth={true} type="text" name="vehicle" placeholder="update vehicle" /></li>           
+                    {`vehicle: ${logInfo && logInfo.vehicle}`}
+                    <TextField fullWidth={true} type="text" name="vehicle" placeholder="update vehicle" /></li>
+                
+                
+
+                {/* <CameraApp handleImageUrl={this.handleImageUrl}/>            */}
                 <TextField type="submit"  />
             </form>
-            <CameraApp />
+            <ImageAudioVideo />
         </div>
     )
     }

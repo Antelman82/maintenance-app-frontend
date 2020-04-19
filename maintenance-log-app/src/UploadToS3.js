@@ -1,12 +1,9 @@
 import S3 from 'react-aws-s3';
 
-process.env.REACT_APP_AWSAcessKeyId
-process.env.REACT_APP_AWSSecretKey
-
 const config = {
     bucketName: 'maintenance-log-app',
     dirName: 'media', /* optional */
-    region: 'eu-east-1',
+    region: 'us-east-1',
     accessKeyId: process.env.REACT_APP_AWSAcessKeyId,
     secretAccessKey: process.env.REACT_APP_AWSSecretKey,
     // s3Url: 'https:/your-custom-s3-url.com/', /* optional */
@@ -32,4 +29,4 @@ ReactS3Client
    *   }
    * }
    */
-});
+   

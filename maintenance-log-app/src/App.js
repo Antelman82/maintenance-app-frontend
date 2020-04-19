@@ -12,6 +12,9 @@ import LogUpdate from './LogUpdate'
 import LogConfirmDelete from './LogConfirmDelete'
 import axios from 'axios'
 import {Route, Link, Redirect, Switch, withRouter} from "react-router-dom"
+// import { ReactS3Client } from './UploadToS3'
+// import S3 from 'react-aws-s3';
+// import AWSUpload from './AWSUpload'
 
 // const base_url = window.SERVER_ADDRESS
 const base_url = 'http://localhost:8000/api/'
@@ -284,8 +287,6 @@ class App extends Component {
     }
   }
 
-    
-
   handleVehicleAddSubmit = event => {
     if(this.state.logged_in){
       event.preventDefault()
@@ -342,7 +343,6 @@ class App extends Component {
     }
   }
     
-
   handleDeleteVehicle = event => {
     if(this.state.logged_in){
       event.preventDefault()
@@ -381,9 +381,17 @@ class App extends Component {
       })
       this.props.history.push(`/vehicles`)
     }
+  
   }
     
+  handleUpload = () => {
+    //do something
+  
+  }
 
+  handleDelete = () => {
+    //do something
+  }
 
   render(){
     // console.log('base_url', base_url)
@@ -528,6 +536,9 @@ class App extends Component {
               />
               <Route path="/*" render={() => <Redirect to="/home" />} />
             </Switch>
+            <dev>Testing S3 file uploads</dev>
+            <button onClick={this.handleUpload}>Upload File</button>
+            <button onClick={this.handleDelete}>Delete File</button>
           </main>
           <aside className="App-sidebar">
             <h4>Vehicle Parts List</h4>
