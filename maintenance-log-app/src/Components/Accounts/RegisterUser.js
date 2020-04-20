@@ -6,7 +6,8 @@ const minLength = (len, val) => !(val) || (val.length < len);
 const maxLength = (len, val) => (val.length > len);
 const isEqual = (p1, p2) => p1 === p2
 
-const base_url = window.SERVER_ADDRESS
+const base_url = process.env.REACT_APP_BACKEND_APP_URL || 'http://localhost:8000/api/'
+// const base_url = window.SERVER_ADDRESS
 class RegisterUser extends Component {
     constructor(props) {
         super(props)
@@ -79,7 +80,7 @@ class RegisterUser extends Component {
         e.preventDefault()
         const {first_name, last_name, username, password} = this.state
         if(this.isValid()){
-            Axios.post(base_url + 'social/users/create', {
+            Axios.post(base_url + 'auth/register', {
                 'user' : {
                     'first_name' : first_name,
                     'last_name' : last_name,

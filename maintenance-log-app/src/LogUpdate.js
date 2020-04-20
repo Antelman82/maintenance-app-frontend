@@ -26,16 +26,16 @@ class LogUpdate extends Component {
                 id={this.props.match.params.id}
             >
                 <li>
-                    {`model year: ${logInfo && logInfo.date}`}
+                    {`service date: ${logInfo && logInfo.date}`}
                     <TextField fullWidth={true} type="text" name="date" placeholder="update service date"/></li>
                 <li>
-                    {`make: ${logInfo && logInfo.shop}`}
+                    {`shop: ${logInfo && logInfo.shop}`}
                     <TextField fullWidth={true} type="text" name="shop" placeholder="update shop" /></li>
                 <li>
-                    {`model: ${logInfo && logInfo.receipts}`}
+                    {`receipts: ${logInfo && logInfo.receipts}`}
                     <TextField fullWidth={true} type="text" name="receipts" placeholder="update receipts" /></li>
                 <li>
-                    {`trim: ${logInfo && logInfo.repair_name}`}
+                    {`repair name: ${logInfo && logInfo.repair_name}`}
                     <TextField fullWidth={true} type="text" name="repair_name" placeholder="update repair name" /></li>
                 <li>
                     {`cost: ${logInfo && logInfo.cost}`}
