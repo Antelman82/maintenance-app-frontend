@@ -23,6 +23,8 @@ class RegisterUser extends Component {
             display_username : false,
             display_password : false,
             display_password2 : false,
+            email: '',
+            phone: '' 
         }
 
     }
