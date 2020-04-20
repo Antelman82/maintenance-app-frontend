@@ -83,14 +83,13 @@ class RegisterUser extends Component {
         const {first_name, last_name, username, password} = this.state
         if(this.isValid()){
             Axios.post(base_url + 'auth/register', {
-                {
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "username": username
-                    "password": password,
-                    "email": email,
-                    "phone": phone
-                }) 
+                "first_name": first_name,
+                "last_name": last_name,
+                "username": username
+                "password": password,
+                "email": email,
+                "phone": phone
+            }) 
             .then(response => {
                 console.log(response)
                 console.log(response.status + " " + response.statusText)
