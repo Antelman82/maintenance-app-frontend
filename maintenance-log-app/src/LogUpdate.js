@@ -34,6 +34,11 @@ class LogUpdate extends Component {
                 <li>
                     {`receipts: ${logInfo && logInfo.receipts}`}
                     <TextField fullWidth={true} type="text" name="receipts" placeholder="update receipts" /></li>
+                <div>
+                    <button onClick={this.handleUpload}>Upload File</button>
+                    <button onClick={this.handleDelete}>Delete File</button>
+                </div>
+                
                 <li>
                     {`repair name: ${logInfo && logInfo.repair_name}`}
                     <TextField fullWidth={true} type="text" name="repair_name" placeholder="update repair name" /></li>
@@ -47,9 +52,9 @@ class LogUpdate extends Component {
                     {`vehicle: ${logInfo && logInfo.vehicle}`}
                     <TextField fullWidth={true} type="text" name="vehicle" placeholder="update vehicle" /></li>
                 
-                
 
-                {/* <CameraApp handleImageUrl={this.handleImageUrl}/>            */}
+
+                {/* <CameraApp handleImageUrl={this.handleImageUrl}/> */}
                 <TextField type="submit"  />
             </form>
             <ImageAudioVideo />

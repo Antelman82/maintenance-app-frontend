@@ -536,9 +536,9 @@ class App extends Component {
               />
               <Route path="/*" render={() => <Redirect to="/home" />} />
             </Switch>
-            <dev>Testing S3 file uploads</dev>
+            {/* <div>Testing S3 file uploads</div>
             <button onClick={this.handleUpload}>Upload File</button>
-            <button onClick={this.handleDelete}>Delete File</button>
+            <button onClick={this.handleDelete}>Delete File</button> */}
           </main>
           <aside className="App-sidebar">
             <h4>Vehicle Parts List</h4>

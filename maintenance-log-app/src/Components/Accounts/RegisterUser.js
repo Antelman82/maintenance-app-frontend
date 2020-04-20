@@ -48,7 +48,7 @@ class RegisterUser extends Component {
             this.state[property] = false
         }
         if(this.state[property]){
-            return (<>{errors.map((error,index) => <Row key={index} style={{color : 'red'}}>{error}</Row>)}</>)        
+            return (<div>{errors.map((error,index) => <Row key={index} style={{color : 'red'}}>{error}</Row>)}</div>)        
         }
     }
     isValid = () => {
@@ -74,6 +74,8 @@ class RegisterUser extends Component {
                 display_username : false,
                 display_password : false,
                 display_password2 : false,
+                email: '',
+                phone: ''
         })
     }
     sendRegistration = e => {
@@ -81,12 +83,14 @@ class RegisterUser extends Component {
         const {first_name, last_name, username, password} = this.state
         if(this.isValid()){
             Axios.post(base_url + 'auth/register', {
-                'user' : {
-                    'first_name' : first_name,
-                    'last_name' : last_name,
-                    'username' :  username,
-                    'password' : password
-                }})
+                {
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "username": username
+                    "password": password,
+                    "email": email,
+                    "phone": phone
+                }) 
             .then(response => {
                 console.log(response)
                 console.log(response.status + " " + response.statusText)

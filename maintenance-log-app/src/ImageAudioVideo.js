@@ -17,7 +17,7 @@ function ImageAudioVideo (props) {
         <p>Drag 'n' drop some files here, or click to select files</p>
       </div>
       <aside>
-        <h4>Files</h4>
+        <h4>List of Files dropped</h4>
         <ul>{files}</ul>
       </aside>
     </section>

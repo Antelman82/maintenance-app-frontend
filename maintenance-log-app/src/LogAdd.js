@@ -18,10 +18,13 @@ class LogAdd extends Component {
                 <li><TextField fullWidth={true} type="text" name="date" placeholder="date of service" /></li>
                 <li><TextField fullWidth={true} type="text" name="shop" placeholder="place service was performed" /></li>
                 <li><TextField fullWidth={true} type="text" name="receipts" placeholder="documentation" /></li>
+                <button onClick={this.handleUpload}>Upload File</button>
+                <button onClick={this.handleDelete}>Delete File</button>
                 <li><TextField fullWidth={true} type="text" name="repair_name" placeholder="repair_name" /></li>
                 <li><TextField fullWidth={true} type="text" name="cost" placeholder="cost ($10.00)" /></li>
                 <li><TextField fullWidth={true} type="text" name="description" placeholder="description of service" /></li>     
                 <li><TextField fullWidth={true} type="text" name="vehicle" placeholder="vehicle" /></li>
+
                 <TextField type="submit" />
             </form>
         </div>

@@ -4,8 +4,8 @@ const config = {
     bucketName: 'maintenance-log-app',
     dirName: 'media', /* optional */
     region: 'us-east-1',
-    accessKeyId: process.env.REACT_APP_AWSAcessKeyId,
-    secretAccessKey: process.env.REACT_APP_AWSSecretKey,
+    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     // s3Url: 'https:/your-custom-s3-url.com/', /* optional */
 }
 
