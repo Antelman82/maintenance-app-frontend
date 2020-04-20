@@ -11,7 +11,7 @@ class Logs extends Component {
   render() {
     console.log('Log Component Render', this.props)
     console.log(this.props.match.params && this.props.match.params.id)
-    let logDetails = []
+    let logDetails = []   
     if(this.props.match.params && this.props.match.params.id !== 'all'){
     logDetails = this.props.match.params && this.props.props.logs.map((log, index) => {
       if (log.vehicle == this.props.match.params.id){
