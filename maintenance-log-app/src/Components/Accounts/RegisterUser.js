@@ -82,16 +82,33 @@ class RegisterUser extends Component {
     }
     sendRegistration = e => {
         e.preventDefault()
-        const {first_name, last_name, username, password} = this.state
+        // const {first_name, last_name, username, password} = this.state
         if(this.isValid()){
-            Axios.post(base_url + 'auth/register', {
-                "first_name": first_name,
-                "last_name": last_name,
-                "username": username
-                "password": password,
-                "email": email,
-                "phone": phone
-            }) 
+            // Axios.post(base_url + 'auth/register', {
+            //     "first_name": first_name,
+            //     "last_name": last_name,
+            //     "username": username
+            //     "password": password,
+            //     "email": email,
+            //     "phone": phone
+            // })
+            fetch(base_url + 'auth/register', {
+                crossDomain : true,
+                withCredentials : true,
+                async : true,
+                method : 'POST',
+                headers : {
+                  'Content-Type' : 'application/json',
+                },
+                body : JSON.stringify({
+                    "first_name": this.first_name,
+                    "last_name": this.last_name,
+                    "username": this.username,
+                    "password": this.password,
+                    "email": this.email,
+                    "phone": this.phone
+                })
+              }) 
             .then(response => {
                 console.log(response)
                 console.log(response.status + " " + response.statusText)
