@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavComponent from './Components/NavComponent';
+import NavComponent from './NavComponent';
 import UserInfo from './UserInfo'
 import Vehicles from './Vehicles'
 import VehicleUpdate from './VehicleUpdate'
@@ -10,13 +10,12 @@ import Logs from './Logs'
 import LogAdd from './LogAdd'
 import LogUpdate from './LogUpdate'
 import LogConfirmDelete from './LogConfirmDelete'
-import axios from 'axios'
+import RegisterUser from './RegisterUser'
 import {Route, Link, Redirect, Switch, withRouter} from "react-router-dom"
 // import { ReactS3Client } from './UploadToS3'
 // import S3 from 'react-aws-s3';
 // import AWSUpload from './AWSUpload'
 
-// const base_url = window.SERVER_ADDRESS
 const base_url = process.env.REACT_APP_BACKEND_APP_URL || 'http://localhost:8000/api/'
 class App extends Component {
   constructor(props){
@@ -33,7 +32,9 @@ class App extends Component {
       make: '',
       model: '',
       trim: '',
-      color: ''
+      color: '',
+      phone: '',
+      email: '',
     }
   }
 
@@ -531,6 +532,15 @@ class App extends Component {
                     log={this.state.logs}
                     handleChange={this.handleChange}
                     handleDeleteLog={this.handleDeleteLog}
+                  />
+                }
+              />
+              <Route
+                path='/signup'
+                render={routerProps =>
+                  <RegisterUser
+                    {...routerProps}
+                    handleLogin = {this.handleLogin}
                   />
                 }
               />

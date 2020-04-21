@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import LoginUser from './Accounts/LoginUser';
-import RegisterUser from './Accounts/RegisterUser';
+import LoginUser from './LoginUser'
+import { Link } from "react-router-dom"
 
 class NavComponent extends Component {
     render(){
@@ -12,16 +12,13 @@ class NavComponent extends Component {
                         handleLogin={this.props.handleLogin}
                         username={this.props.username}/>;
                 break;
-            case 'signup' : 
-                form = <RegisterUser />
-                break;
             default:
                 form = null;
             }
         const logged_in_nav = (
             <ul>
                 <li onClick = {() => this.props.display_form('login')}>Login</li>
-                <li onClick = {() => this.props.display_form('signup')}>Signup</li>
+                <li><Link to="/signup">SignUp</Link></li>
             </ul>
         );
         const logged_out_nav = (

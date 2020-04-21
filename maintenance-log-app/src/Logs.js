@@ -10,8 +10,9 @@ class Logs extends Component {
 
   render() {
     console.log('Log Component Render', this.props)
-    console.log(this.props.match.params && this.props.match.params.id)
-    let logDetails = []   
+    console.log('Logs Component Render this.props.match.params', this.props.match.params && this.props.match.params.id)
+    let logDetails = []
+    // only returns user's logs   
     if(this.props.match.params && this.props.match.params.id !== 'all'){
     logDetails = this.props.match.params && this.props.props.logs.map((log, index) => {
       if (log.vehicle == this.props.match.params.id){
@@ -37,6 +38,7 @@ class Logs extends Component {
       }
     })}
 
+    //returns all logs eventually this should probably be disabled.
     if(this.props.match.params && this.props.match.params.id === 'all'){
       logDetails = this.props.match.params && this.props.props.logs.map((log, index) => {
         return (
