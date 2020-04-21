@@ -8,6 +8,18 @@ The main objective of this project was to create an application that a team coul
 
 ---
 
+
+## Project Links
+
+App Frontend: https://maintenance-log-app.herokuapp.com/home
+
+App Backend API : https://maintenace-log-api.herokuapp.com/api/
+
+Frontend Github Repo: https://github.com/Antelman82/maintenance-app-frontend/
+Backend Github Repo: https://github.com/Antelman82/maintenance-app-backend
+
+---
+
 ## Screenshots
 - Wireframe
 <p align="center">
