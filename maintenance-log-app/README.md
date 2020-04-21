@@ -196,3 +196,15 @@ Postgres Database
 Account setup
 Serializers
 
+---
+
+## References I used
+https://devcenter.heroku.com/articles/buildpacks
+https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/
+https://www.npmjs.com/package/react-html5-camera-photo
+https://www.django-rest-framework.org/api-guide/relations/
+https://medium.com/swlh/django-rest-framework-with-react-jwt-authentication-part-1-a24b24fa83cd
+
+
+---
+
