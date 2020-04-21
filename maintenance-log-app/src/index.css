@@ -192,6 +192,33 @@ input[type=text]{
   color: #3f3f3f;
 }
 
+.contact-info{
+  color: white;
+  /* display: flex; */
+  /* align-items: center; */
+}
+.contact-info ul {
+  list-style: none;
+  float: right;
+  margin: 0;
+}
+.contact-info li {
+  float: left;
+  width: 100px;
+  line-height: 80px;
+  vertical-align: middle;
+  text-align: center;
+  margin: 0;
+}
+.feedback{
+  color: white;
+  width: 300px;
+  height: 500px;
+  display: block;
+  padding: 20px 30% 10% 30%;
+  /* font-size: 25pt; */
+}
+
 @media screen and (min-width: 768px) {
   .App-body {
     flex-direction: row;

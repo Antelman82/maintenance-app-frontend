@@ -11,15 +11,7 @@ The main objective of this project was to create an application that a team coul
 ## Screenshots
 - Wireframe
 <p align="center">
-<img src='Project 3 Wireframe - Show Management App.jpg' width=600 align='center'>
-</p>
-
-<p align="center">
-<img src='Project 3 Wireframe - Show Management App - page2.jpg' width=600 align='center'>
-</p>
-
-<p align="center">
-<img src='Project 3 Wireframe - Show Management App - page3.jpg' width=600 align='center'>
+<img src='#' width=600 align='center'>
 </p>
  
 - Database Template
@@ -59,10 +51,14 @@ Assets
     - Trip event, distance, start/end points, gas pumped/used, etc.
 5. Phone app camera pictures to add to different logs
 Possible api for vehicle info like tiresize, wiper sizes, etc.
+    - This needs to be broken down into differen sub-features as it's more complext than I originally thought.
 
 possible API connections:
 https://www.carmd.com/api/vehicle-maintenance-carmd-api/
 https://www.dataonesoftware.com/solutions/service-maintenance
+
+here is a link to a list of different vehicle api's that I wanted to look into for part references:
+https://www.motor.com/kb/documentation/
 
 ---
 

@@ -11,6 +11,7 @@ import LogAdd from './LogAdd'
 import LogUpdate from './LogUpdate'
 import LogConfirmDelete from './LogConfirmDelete'
 import RegisterUser from './RegisterUser'
+import ContactInfo from './ContactInfo'
 import {Route, Link, Redirect, Switch, withRouter} from "react-router-dom"
 // import { ReactS3Client } from './UploadToS3'
 // import S3 from 'react-aws-s3';
@@ -428,6 +429,7 @@ class App extends Component {
               <li><Link to="/user">User Details</Link></li>
               <li><Link to="/vehicles">Vehicles</Link></li>
               <li><Link to="/logs/all">All Logs</Link></li>
+              <li><Link to="/contactinfo">Contact Info</Link></li>
             </ul>
           </nav>
           <main className="App-content">
@@ -543,6 +545,10 @@ class App extends Component {
                     handleLogin = {this.handleLogin}
                   />
                 }
+              />
+              <Route 
+                path="/contactinfo" 
+                component={ContactInfo}
               />
               <Route path="/*" render={() => <Redirect to="/home" />} />
             </Switch>
