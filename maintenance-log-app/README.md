@@ -100,6 +100,13 @@ A link to your hosted, working project in the URL section of your Github repo:
 
 ## Deployment
 - Your API must be deployed to Heroku and your front-end must be deployed to GitHub pages or Surge. Applications that are not deployed will be considered incomplete.
+
+### Technology Stack:
+- Node.js
+- React.js
+- Django/Python
+- Postgres
+
 ---
 
 ## Backend API
